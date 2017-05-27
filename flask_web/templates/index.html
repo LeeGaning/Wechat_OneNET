@@ -1,0 +1,30 @@
+<html>
+<body>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js">
+</script>
+<script type="text/javascript">
+    document.write('<button type="button" onclick="light_on();">开灯');
+    document.write('</button>');
+    document.write('<button type="button" onclick="light_off();">关灯');
+    document.write('</button>');
+    light_on=function (){
+        axios.post('/',{red_led:1})
+        .then(function (response) {
+            //console.log(response);
+            })
+        .catch(function (error) {
+            console.log(error);
+        });
+    };
+    function light_off(){
+        axios.post('/',{red_led:0})
+        .then(function (response) {
+            //console.log(response);
+            })
+        .catch(function (error) {
+            console.log(error);
+        });
+    };
+</script>
+</html>

@@ -12,6 +12,7 @@ from wechatpy.exceptions import (
 	InvalidAppIdException,
 )
 from flask_web import app
+from flask_web.plugins.led import red_led_on,red_led_off
 
 def wechat_response(msg):
 	"""微信消息处理回复"""
@@ -91,27 +92,7 @@ def click_resp():
 def command_not_found():
 	"""非关键词回复"""
 	return u"未识别指令！\n"
-    
-def red_led_on():
-    headers = {'api-key': app.config["ONENET_TOKEN"]}
-    payload = {'red_led': 1}
-    r = requests.post(app.config["ONENET_URL"], headers=headers, data=json.dumps(payload))
-    rc = json.loads(r.text).get("errno")
-    if rc == 0:
-        return "已点亮红灯！"
-    else :
-        return "操作失败!! 错误信息:"+json.loads(r.text).get("error")
-
-def red_led_off():
-    headers = {'api-key': app.config["ONENET_TOKEN"]}
-    payload = {'red_led': 0}
-    r = requests.post(app.config["ONENET_URL"], headers=headers, data=json.dumps(payload))
-    rc = json.loads(r.text).get("errno")
-    if rc == 0:
-        return "已熄灭红灯！"
-    else :
-        return "操作失败!! 错误信息:"+json.loads(r.text).get("error")
-        
+       
 class Wechat_view(MethodView):
 	methods = ['GET', 'POST']
 	def get(self):

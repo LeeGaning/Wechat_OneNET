@@ -26,4 +26,5 @@ if not app.debug:
 #路由设定
 #import flask_web.routes
 import flask_web.views.wechat
+import flask_web.views.demo
 
