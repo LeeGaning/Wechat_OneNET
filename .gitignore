@@ -1,0 +1,8 @@
+# customize
+!.gitignore
+*.pyc
+*__pycache__*
+.idea/*
+config.py
+instance/config.py
+*.log
